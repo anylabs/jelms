@@ -13,15 +13,6 @@ export default function({ init, update, view }) {
     handleUpdate(result);
   }
 
-  function handleCommand(command) {
-    if (Array.isArray(command)) {
-      const [msg, promise] = command;
-      promise.then(payload => cmd(msg, payload));
-    } else {
-      cmd(command);
-    }
-  }
-
   function handleUpdate(update) {
     const [updatedModel, command] = update;
 
@@ -31,6 +22,14 @@ export default function({ init, update, view }) {
 
     model = updatedModel;
     view({ cmd, model });
-    command && handleCommand(command);
+
+    if (command) {
+      if (Array.isArray(command)) {
+        const [msg, promise] = command;
+        promise.then(payload => cmd(msg, payload));
+      } else {
+        cmd(command);
+      }
+    }
   }
 }

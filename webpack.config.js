@@ -17,15 +17,8 @@ module.exports = {
     rules: [
       {
         include: /example|src/,
-        loader: "babel-loader",
-        query: {
-          plugins: [
-            "transform-class-properties",
-            "transform-object-rest-spread",
-            ["transform-react-jsx", { pragma: "preact.h" }]
-          ]
-        },
-        test: /\.js$/
+        loader: "awesome-typescript-loader",
+        test: /\.tsx?$/
       }
     ]
   },
@@ -48,6 +41,7 @@ module.exports = {
   resolve: {
     alias: {
       jelms: __dirname + "/src/"
-    }
+    },
+    extensions: [".js", ".ts", ".tsx"]
   }
 };

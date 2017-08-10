@@ -1,10 +1,11 @@
 import { h } from "preact";
 import { Msg } from "./msg";
+import { Profile } from "./model";
 
 interface Props {
   msg: (msg: Msg) => void;
   name: string;
-  profile: any;
+  profile: Profile | null;
 }
 
 export default ({ msg, name, profile }: Props) =>

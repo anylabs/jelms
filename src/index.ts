@@ -6,7 +6,7 @@ interface Jelms<Model, Msg> {
 
 type Command<T> = Promise<T> | T;
 
-export default function<Model, Msg>({ init, update, view }: Jelms<Model, Msg>) {
+export function program<Model, Msg>({ init, update, view }: Jelms<Model, Msg>) {
   let model: Model;
 
   handleUpdate(init());

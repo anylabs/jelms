@@ -1,10 +1,12 @@
+import { Profile } from "./model";
+
 interface UserLoadedProfile {
   type: "UserLoadedProfile";
 }
 
 interface ProfileLoaded {
   type: "ProfileLoaded";
-  profile: string;
+  profile: Profile;
 }
 
 interface UserUpdatedName {

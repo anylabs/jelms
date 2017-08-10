@@ -1,16 +1,12 @@
 import { h, render } from "preact";
-import View from "./view";
-import jelms from "../src";
+import { Model } from "./model";
 import { Msg } from "./msg";
+import { program } from "../src";
+import View from "./view";
 
 let root: Element;
 
-interface Model {
-  readonly name: string;
-  readonly profile: any;
-}
-
-jelms<Model, Msg>({
+program<Model, Msg>({
   init() {
     return [
       { name: "hfjallemark", profile: null },

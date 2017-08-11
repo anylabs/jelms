@@ -1,42 +1,29 @@
 interface Jelms<Model, Msg> {
-  init(): Model | [Model, Command<Msg>]
-  update(model: Model, msg: Msg): Model | [Model, Command<Msg>]
-  view(model: Model, handleMsg: (msg: Msg) => void): void
+  init(): Model | [Model, Promise<Msg>]
+  subscriptions(emit: (msg: Msg) => void): void
+  update(model: Model, msg: Msg): Model | [Model, Promise<Msg>]
+  view(model: Model, emit: (msg: Msg) => void): void
 }
 
-type Command<Msg> = Promise<Msg> | Msg
-
-export function program<Model, Msg>({ init, update, view }: Jelms<Model, Msg>) {
+export function program<Model, Msg>(config: Jelms<Model, Msg>) {
+  const { init, subscriptions, update, view } = config
   let model: Model
 
-  handleUpdate(init())
+  performUpdate(init())
+  subscriptions(emit)
 
-  function handleMsg(msg: Msg) {
-    handleUpdate(update(model, msg))
+  function emit(msg: Msg) {
+    performUpdate(update(model, msg))
   }
 
-  function handleUpdate(update: Model | [Model, Command<Msg>]) {
-    let updatedModel: Model
-    let command: Command<Msg> | null = null
-
+  function performUpdate(update: Model | [Model, Promise<Msg>]) {
     if (Array.isArray(update)) {
-      updatedModel = update[0]
-      command = update[1]
+      model = update[0]
+      update[1].then(msg => emit(msg))
     } else {
-      updatedModel = update
+      model = update
     }
 
-    model = updatedModel
-    view(model, handleMsg)
-
-    if (command) {
-      const promise = command as Promise<Msg>
-
-      if (promise.then) {
-        promise.then(payload => handleMsg(payload))
-      } else {
-        handleMsg(command as Msg)
-      }
-    }
+    view(model, emit)
   }
 }

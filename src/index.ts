@@ -11,14 +11,14 @@ export function program<Model, Msg>(config: Config<Model, Msg>) {
   const { init, subscriptions, update, view } = config
   let model: Model
 
-  performUpdate(init())
+  handleUpdate(init())
   subscriptions(emit)
 
   function emit(msg: Msg) {
-    performUpdate(update(model, msg))
+    handleUpdate(update(model, msg))
   }
 
-  function performUpdate(result: UpdateResult<Model, Msg>) {
+  function handleUpdate(result: UpdateResult<Model, Msg>) {
     if (Array.isArray(result)) {
       model = result[0]
       result[1].then(msg => emit(msg))

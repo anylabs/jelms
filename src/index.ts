@@ -1,9 +1,11 @@
 interface Config<Model, Msg> {
-  init(): Model | [Model, Promise<Msg>]
+  init(): UpdateResult<Model, Msg>
   subscriptions(emit: (msg: Msg) => void): void
-  update(model: Model, msg: Msg): Model | [Model, Promise<Msg>]
+  update(model: Model, msg: Msg): UpdateResult<Model, Msg>
   view(model: Model, emit: (msg: Msg) => void): void
 }
+
+type UpdateResult<Model, Msg> = Model | [Model, Promise<Msg>]
 
 export function program<Model, Msg>(config: Config<Model, Msg>) {
   const { init, subscriptions, update, view } = config
@@ -16,12 +18,12 @@ export function program<Model, Msg>(config: Config<Model, Msg>) {
     performUpdate(update(model, msg))
   }
 
-  function performUpdate(update: Model | [Model, Promise<Msg>]) {
-    if (Array.isArray(update)) {
-      model = update[0]
-      update[1].then(msg => emit(msg))
+  function performUpdate(result: UpdateResult<Model, Msg>) {
+    if (Array.isArray(result)) {
+      model = result[0]
+      result[1].then(msg => emit(msg))
     } else {
-      model = update
+      model = result
     }
 
     view(model, emit)

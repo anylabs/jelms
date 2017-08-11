@@ -1,9 +1,9 @@
 export interface Model {
-  readonly name: string;
-  readonly profile: Profile | null;
+  readonly name: string
+  readonly profile: Profile | null
 }
 
 export interface Profile {
-  readonly name: string;
-  readonly location: string;
+  readonly id: string
+  readonly name: string
 }

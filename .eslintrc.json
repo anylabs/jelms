@@ -1,0 +1,32 @@
+{
+  "parser": "typescript-eslint-parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "plugins": ["typescript", "prettier"],
+  "rules": {
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "*", "next": "*" },
+      { "blankLine": "never", "prev": "import", "next": "import" },
+      { "blankLine": "never", "prev": "expression", "next": "expression" },
+      {
+        "blankLine": "never",
+        "prev": ["const", "let"],
+        "next": ["const", "let"]
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "parser": "typescript",
+        "semi": false,
+        "singleQuote": true,
+        "trailingComma": "all"
+      }
+    ]
+  }
+}

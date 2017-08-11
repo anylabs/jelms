@@ -1,17 +1,17 @@
-import { Profile } from "./model";
+import { Profile } from './model'
 
-interface UserLoadedProfile {
-  type: "UserLoadedProfile";
+interface LoadProfile {
+  type: 'LoadProfile'
+}
+
+interface NameUpdated {
+  type: 'NameUpdated'
+  name: string
 }
 
 interface ProfileLoaded {
-  type: "ProfileLoaded";
-  profile: Profile;
+  type: 'ProfileLoaded'
+  profile: Profile
 }
 
-interface UserUpdatedName {
-  type: "UserUpdatedName";
-  name: string;
-}
-
-export type Msg = UserLoadedProfile | ProfileLoaded | UserUpdatedName;
+export type Msg = LoadProfile | NameUpdated | ProfileLoaded

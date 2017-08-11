@@ -1,47 +1,46 @@
-const webpack = require("webpack");
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const merge = require('webpack-merge')
+const webpack = require('webpack')
 
-module.exports = {
-  devServer: {
-    contentBase: "example",
-    hot: true,
-    noInfo: true,
-    port: 5000,
-    stats: {
-      cached: false,
-      colors: true
-    }
-  },
-  devtool: "source-map",
-  entry: "./example",
+const common = {
   module: {
     rules: [
       {
         include: /example|src/,
-        loader: "awesome-typescript-loader",
-        test: /\.tsx?$/
-      }
-    ]
+        loader: 'awesome-typescript-loader',
+        test: /\.tsx?$/,
+      },
+    ],
   },
-  output: {
-    filename: "app.js",
-    path: __dirname,
-    publicPath: "/"
-  },
-  performance: {
-    hints: false
-  },
-  plugins: [
-    new webpack.ProvidePlugin({
-      preact: "preact"
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
-  ],
   resolve: {
-    alias: {
-      jelms: __dirname + "/src/"
+    extensions: ['.js', '.ts', '.tsx'],
+  },
+}
+
+if (process.env.npm_lifecycle_event === 'build') {
+  module.exports = merge(common, {
+    entry: './src',
+    output: {
+      filename: 'jelms.js',
+      path: __dirname + '/dist',
     },
-    extensions: [".js", ".ts", ".tsx"]
-  }
-};
+    plugins: [new UglifyJSPlugin()],
+  })
+} else {
+  module.exports = merge(common, {
+    devServer: {
+      contentBase: 'example',
+      hot: true,
+    },
+    devtool: 'source-map',
+    entry: './example',
+    output: {
+      filename: 'app.js',
+    },
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NamedModulesPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(),
+    ],
+  })
+}

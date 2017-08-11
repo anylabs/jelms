@@ -1,47 +1,26 @@
 {
-  "dependencies": {
-    "preact": "^8.2.1"
-  },
   "devDependencies": {
     "awesome-typescript-loader": "^3.2.2",
-    "babel-core": "^6.25.0",
-    "babel-eslint": "^7.2.3",
-    "babel-loader": "^7.1.1",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
     "eslint": "^4.4.1",
-    "eslint-config-prettier": "^2.3.0",
-    "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-prettier": "^2.1.2",
+    "eslint-plugin-typescript": "^0.4.0",
+    "preact": "^8.2.1",
     "prettier": "^1.5.3",
+    "prettier-eslint": "^6.4.2",
     "typescript": "^2.4.2",
-    "webpack": "^3.5.2",
-    "webpack-dev-server": "^2.7.1"
+    "typescript-eslint-parser": "^5.0.1",
+    "uglifyjs-webpack-plugin": "^0.4.6",
+    "webpack": "^3.5.3",
+    "webpack-dev-server": "^2.7.1",
+    "webpack-merge": "^4.1.0"
   },
-  "eslintConfig": {
-    "extends": [
-      "prettier"
-    ],
-    "parserOptions": {
-      "ecmaFeatures": {
-        "jsx": true
-      },
-      "ecmaVersion": 2017,
-      "sourceType": "module"
-    },
-    "parser": "babel-eslint",
-    "plugins": [
-      "babel",
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": "error"
-    }
-  },
+  "license": "MIT",
   "name": "jelms",
+  "repository": "https://github.com/hfjallemark/jelms",
   "scripts": {
+    "build": "webpack",
+    "lint": "eslint example/*.ts example/*.tsx src/*.ts",
     "start": "webpack-dev-server"
   },
-  "version": "1.0.0"
+  "version": "0.0.1"
 }

@@ -1,11 +1,11 @@
-interface Jelms<Model, Msg> {
+interface Config<Model, Msg> {
   init(): Model | [Model, Promise<Msg>]
   subscriptions(emit: (msg: Msg) => void): void
   update(model: Model, msg: Msg): Model | [Model, Promise<Msg>]
   view(model: Model, emit: (msg: Msg) => void): void
 }
 
-export function program<Model, Msg>(config: Jelms<Model, Msg>) {
+export function program<Model, Msg>(config: Config<Model, Msg>) {
   const { init, subscriptions, update, view } = config
   let model: Model
 

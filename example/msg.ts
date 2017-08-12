@@ -1,20 +1,20 @@
 import { Profile } from "./model"
 
-interface HashUpdated {
+type HashUpdated = {
   type: "HashUpdated"
   hash: string
 }
 
-interface LoadProfile {
+type LoadProfile = {
   type: "LoadProfile"
 }
 
-interface NameUpdated {
+type NameUpdated = {
   type: "NameUpdated"
   name: string
 }
 
-interface ProfileLoaded {
+type ProfileLoaded = {
   type: "ProfileLoaded"
   profile: Profile
 }

@@ -1,4 +1,4 @@
-interface Config<Model, Msg> {
+type Config<Model, Msg> = {
   init(): UpdateResult<Model, Msg>
   subscriptions(emit: (msg: Msg) => void): void
   update(model: Model, msg: Msg): UpdateResult<Model, Msg>

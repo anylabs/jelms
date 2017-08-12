@@ -1,9 +1,9 @@
-export interface Model {
+export type Model = {
   readonly name: string
   readonly profile: Profile | null
 }
 
-export interface Profile {
+export type Profile = {
   readonly id: string
   readonly name: string
 }

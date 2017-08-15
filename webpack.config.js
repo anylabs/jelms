@@ -6,7 +6,7 @@ const common = {
   module: {
     rules: [
       {
-        include: /example|src/,
+        include: /examples|index.ts/,
         loader: "awesome-typescript-loader",
         test: /\.tsx?$/,
       },
@@ -19,23 +19,27 @@ const common = {
 
 if (process.env.npm_lifecycle_event === "build") {
   module.exports = merge(common, {
-    entry: "./src",
+    entry: "./index.ts",
     output: {
-      filename: "jelms.js",
-      path: __dirname + "/dist",
-      sourceMapFilename: "jelms.js.map",
+      filename: "index.js",
+      library: "jelms",
+      libraryTarget: "umd",
+      sourceMapFilename: "index.js.map",
     },
     plugins: [new UglifyJSPlugin({ sourceMap: true })],
   })
 } else {
   module.exports = merge(common, {
     devServer: {
-      contentBase: "example",
+      contentBase: "examples",
       hot: true,
     },
-    entry: "./example",
+    entry: {
+      counter: "./examples/counter",
+      github: "./examples/github",
+    },
     output: {
-      filename: "app.js",
+      filename: "[name]/app.js",
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),

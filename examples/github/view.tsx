@@ -1,4 +1,4 @@
-import { h } from "preact"
+import * as React from "react"
 import { Msg } from "./msg"
 import { Profile } from "./model"
 
@@ -14,7 +14,7 @@ export default ({ emit, name, profile }: Props) =>
       {profile ? `${profile.name} (${profile.id})` : "Enter username"}
     </h1>
     <input
-      onInput={(e: any) => emit({ type: "NameUpdated", name: e.target.value })}
+      onChange={e => emit({ type: "NameUpdated", name: e.target.value })}
       value={name}
     />
     <button onClick={() => emit({ type: "LoadProfile" })}>Load!</button>

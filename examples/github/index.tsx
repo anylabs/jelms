@@ -1,10 +1,9 @@
-import { h, render } from "preact"
+import * as React from "react"
+import { render } from "react-dom"
 import { Model } from "./model"
 import { Msg } from "./msg"
-import { program } from "../src"
+import { program } from "../../"
 import View from "./view"
-
-let root: Element
 
 program<Model, Msg>({
   init() {
@@ -34,10 +33,9 @@ program<Model, Msg>({
   },
 
   view(model, emit) {
-    root = render(
+    render(
       <View emit={emit} name={model.name} profile={model.profile} />,
-      document.body,
-      root,
+      document.getElementById("app"),
     )
   },
 })

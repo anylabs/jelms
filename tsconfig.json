@@ -1,13 +1,11 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "jsx": "react",
-    "jsxFactory": "h",
     "lib": ["DOM", "ES2015"],
     "module": "commonjs",
-    "outDir": "./dist/",
     "sourceMap": true,
     "strict": true,
     "target": "es5"
-  },
-  "include": ["./example/**/*", "./src/**/*"]
+  }
 }

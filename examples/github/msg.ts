@@ -1,20 +1,20 @@
 import { Profile } from "./model"
 
-type HashUpdated = {
+export type HashUpdated = {
   type: "HashUpdated"
   hash: string
 }
 
-type LoadProfile = {
+export type LoadProfile = {
   type: "LoadProfile"
 }
 
-type NameUpdated = {
+export type NameUpdated = {
   type: "NameUpdated"
   name: string
 }
 
-type ProfileLoaded = {
+export type ProfileLoaded = {
   type: "ProfileLoaded"
   profile: Profile
 }

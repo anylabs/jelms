@@ -5,7 +5,7 @@ import { Profile } from "./model"
 type Props = {
   emit: (msg: Msg) => void
   name: string
-  profile: Profile | null
+  profile?: Profile
 }
 
 export default ({ emit, name, profile }: Props) =>

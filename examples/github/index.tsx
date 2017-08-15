@@ -7,7 +7,7 @@ import View from "./view"
 
 program<Model, Msg>({
   init() {
-    return [{ name: "hfjallemark", profile: null }, loadProfile("hfjallemark")]
+    return [{ name: "hfjallemark" }, loadProfile("hfjallemark")]
   },
 
   subscriptions(emit) {

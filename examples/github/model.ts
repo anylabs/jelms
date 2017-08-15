@@ -1,6 +1,6 @@
 export type Model = {
   readonly name: string
-  readonly profile: Profile | null
+  readonly profile?: Profile
 }
 
 export type Profile = {

@@ -1,2 +1,4 @@
+!dist
 .eslintrc
+index.ts
 tsconfig.json

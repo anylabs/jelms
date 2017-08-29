@@ -2,7 +2,7 @@
   "compilerOptions": {
     "declaration": true,
     "lib": ["DOM", "ES2015"],
-    "module": "UMD",
+    "module": "commonjs",
     "outDir": "dist",
     "sourceMap": true,
     "strict": true,

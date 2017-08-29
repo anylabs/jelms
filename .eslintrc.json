@@ -1,11 +1,5 @@
 {
   "parser": "typescript-eslint-parser",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "sourceType": "module"
-  },
   "plugins": ["typescript", "prettier"],
   "rules": {
     "padding-line-between-statements": [

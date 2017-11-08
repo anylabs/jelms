@@ -7,12 +7,17 @@ export type Config<Model, Msg> = {
 
 export type UpdateResult<Model, Msg> = Model | [Model, Promise<Msg>]
 
+let model: any = null
+
 export function program<Model, Msg>(config: Config<Model, Msg>) {
   const { init, subscriptions, update, view } = config
-  let model: Model
 
-  handleUpdate(init())
-  subscriptions && subscriptions(emit)
+  if (model === null) {
+    handleUpdate(init())
+    subscriptions && subscriptions(emit)
+  } else {
+    handleUpdate(model)
+  }
 
   function emit(msg: Msg) {
     handleUpdate(update(model, msg))

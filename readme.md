@@ -1,6 +1,6 @@
 # Jelms
 
-Elm inspired state management for JavaScript apps.
+Elm inspired state management for [TypeScript](https://www.typescriptlang.org) apps.
 
 ## Examples
 

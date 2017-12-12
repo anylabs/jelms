@@ -7,8 +7,7 @@ Elm inspired state management for [TypeScript](https://www.typescriptlang.org) a
 You can some some examples under the [Jelms Examples](https://github.com/hfjallemark/jelms-examples) repo. Here is the canonical counter app:
 
 ```typescript
-import * as React from "react"
-import { render } from "react-dom"
+import { h, render } from "preact"
 import { program } from "jelms"
 
 type Model = {
@@ -47,7 +46,7 @@ program<Model, Msg>({
         <button onClick={() => emit({ type: "Decrement" })}>-</button>
         <button onClick={() => emit({ type: "Increment" })}>+</button>
       </div>,
-      document.getElementById("app"),
+      document.body,
     )
   },
 })

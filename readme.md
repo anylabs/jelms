@@ -1,6 +1,6 @@
 # Jelms
 
-Elm inspired state management for [TypeScript](https://www.typescriptlang.org) apps.
+Elm inspired state management for [TypeScript](https://www.typescriptlang.org) apps. Tiny size (**223 bytes** minified and gzipped) makes it a perfect partner with [Preact](https://preactjs.com/).
 
 ## Examples
 

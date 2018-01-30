@@ -32,10 +32,10 @@ program<Model, Msg>({
   update(model, msg) {
     switch (msg.type) {
       case "Decrement":
-        return { ...model, counter: model.counter - 1 }
+        return { counter: model.counter - 1 }
 
       case "Increment":
-        return { ...model, counter: model.counter + 1 }
+        return { counter: model.counter + 1 }
     }
   },
 
